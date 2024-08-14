@@ -119,12 +119,24 @@ st.title("임시 개념이해도 계산기... 소영님 파이팅")
 st.write("Please input the following values:")
 
 # 유저 인풋 받기
-TC2 = st.number_input("TC2", value=0.0)
-TC3 = st.number_input("TC3", value=0.0)
-TC4 = st.number_input("TC4", value=0.0)
-RC2 = st.number_input("RC2", value=0.0)
-RC3 = st.number_input("RC3", value=0.0)
-RC4 = st.number_input("RC4", value=0.0)
+col2a, col2b = st.columns(2)
+with col2a:
+    TC2 = st.number_input("2점 문항 풀이 수", value=0.0)
+with col2b:
+    RC2 = st.number_input("2점 문항 정답 수", value=0.0)
+    
+col3a, col3b = st.columns(2)
+with col3a:
+    TC3 = st.number_input("3점 문항 풀이 수", value=0.0)
+with col3b:
+    RC3 = st.number_input("3점 문항 정답 수", value=0.0)
+    
+col4a, col4b = st.columns(2)
+with col4a:
+    TC4 = st.number_input("4점 문항 풀이 수", value=0.0)
+with col4b:
+    RC4 = st.number_input("4점 문항 정답 수", value=0.0)
+
 
 # 계산 버튼 추가
 if st.button("Calculate"):
