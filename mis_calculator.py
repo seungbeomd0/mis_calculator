@@ -100,6 +100,18 @@ def calculation_sMISitg_v2(
         
         return df_simulation_eval_seq
     
+def tag_label(itg_score):
+    if itg_score >= 0.65:
+        label = '매우우수'
+    elif itg_score >= 0.55:
+        label = '우수'
+    elif itg_score >= 0.35:
+        label = '보통(이전:양호)'
+    elif itg_score >= 0.25:
+        label = '다소미흡(이전:보통)'
+    else:
+        label = '미흡'
+    return label
 
 # Streamlit 코드 시작
 st.title("임시 개념이해도 계산기... 소영님 파이팅")
@@ -116,6 +128,8 @@ RC4 = st.number_input("RC4", value=0.0)
 
 # 계산 버튼 추가
 if st.button("Calculate"):
-    result = calculation_sMISitg_v2((get_acm_count(1, [0,TC2,TC3,TC4,0], [0,RC2,RC3,RC4,0])))['itg_score'].values[0]
-    st.success(f"The result is: {np.round(result,3)}")
+    itg_score = calculation_sMISitg_v2((get_acm_count(1, [0,TC2,TC3,TC4,0], [0,RC2,RC3,RC4,0])))['itg_score'].values[0]
+    label = tag_label(itg_score)
+    st.success(f"이해도 점수: {np.round(itg_score,3)} | 등급: {label}")
+    
 
